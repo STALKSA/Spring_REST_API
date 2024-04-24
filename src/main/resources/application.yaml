@@ -1,0 +1,8 @@
+#spring.application.name=First_REST_API
+
+spring:
+  application:
+    name: FIRST_REST_API
+server:
+  port: 8000
+debug: true
