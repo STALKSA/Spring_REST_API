@@ -1,4 +1,4 @@
-package org.klozevitz.First_REST_API.model;
+package org.klozevitz.First_REST_API.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package org.klozevitz.First_REST_API.controllers;
 
 import org.klozevitz.First_REST_API.model.DB;
-import org.klozevitz.First_REST_API.model.Profession;
+import org.klozevitz.First_REST_API.model.entities.Profession;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public class ProfessionControllerAlt {
         return null;
     }
 
-    @PatchMapping("/delete")
+    @PostMapping("/delete")
     public boolean delete(@RequestParam int id) {
         Profession professionToDelete = db.getProfessions().stream()
                 .filter(p -> p.getId() == id)

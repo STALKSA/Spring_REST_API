@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.klozevitz</groupId>
-	<artifactId>First_REST_API</artifactId>
+	<artifactId>Company_112</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>First_REST_API</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Compaa</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -28,10 +28,22 @@
 			<version>1.18.30</version>
 		</dependency>
 
+<!--		Data-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-maven-plugin</artifactId>
+			<version>10.7.1</version>
 		</dependency>
 	</dependencies>
 
@@ -40,6 +52,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>10.7.1</version>
 			</plugin>
 		</plugins>
 	</build>

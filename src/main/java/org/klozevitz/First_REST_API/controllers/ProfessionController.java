@@ -1,27 +1,40 @@
 package org.klozevitz.First_REST_API.controllers;
 
-import org.klozevitz.First_REST_API.model.DB;
-import org.klozevitz.First_REST_API.model.Profession;
+import lombok.RequiredArgsConstructor;
+import org.klozevitz.First_REST_API.model.entities.Profession;
+import org.klozevitz.First_REST_API.services.interfaces.ProfessionService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/profession")
+@RequiredArgsConstructor
 public class ProfessionController {
-    private final DB db = new DB();
+    private final ProfessionService professionService;
 
     @GetMapping
     public List<Profession> all() {
-        return db.getProfessions();
+        return professionService.findAll();
     }
 
     @GetMapping("/{id}")
     public Profession findById(@PathVariable int id) {
-        return db.getProfessions().stream()
-                .filter(p -> p.getId() == id)
-                .findFirst()
-                .orElse(null);
+        try {
+            return professionService.findById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @GetMapping("/findByNoteLike")
+    public List<Profession> findByNoteLike(@RequestParam String notePart) {
+        return professionService.findByNoteLike("%".concat(notePart).concat("%"));
+    }
+
+    @GetMapping("/findByNote")
+    public List<Profession> findByNote(@RequestParam String notePart) {
+        return professionService.findByNote(notePart);
     }
 
 //    @PostMapping()
@@ -34,36 +47,16 @@ public class ProfessionController {
 
     @PostMapping
     public Profession save(@RequestBody Profession profession) {
-        profession.setId(db.getLastId(db.getProfessions()) + 1);
-        db.getProfessions().add(profession);
-        return profession;
+        return professionService.save(profession);
     }
 
     @PatchMapping
-    public Profession update(@RequestBody Profession profession) throws IllegalAccessException {
-        if (profession.getId() != null) {
-            Profession professionToUpdate = db.getProfessions().stream()
-                    .filter(p -> p.getId() == profession.getId())
-                    .findFirst()
-                    .get();
-
-            professionToUpdate.setName(profession.getName());
-            professionToUpdate.setNote(profession.getNote());
-            return profession;
-        }
-        return null;
+    public Profession update(@RequestBody Profession profession) {
+        return professionService.update(profession);
     }
 
     @DeleteMapping
     public boolean delete(@RequestParam int id) {
-        Profession professionToDelete = db.getProfessions().stream()
-                .filter(p -> p.getId() == id)
-                .findFirst()
-                .orElse(null);
-        if (professionToDelete == null)
-            return false;
-
-        db.getProfessions().remove(professionToDelete);
-        return true;
+        return professionService.deleteById(id);
     }
 }

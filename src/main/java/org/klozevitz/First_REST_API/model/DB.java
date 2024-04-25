@@ -1,10 +1,11 @@
 package org.klozevitz.First_REST_API.model;
 
 import lombok.Data;
+import org.klozevitz.First_REST_API.model.entities.Department;
+import org.klozevitz.First_REST_API.model.entities.Employee;
+import org.klozevitz.First_REST_API.model.entities.Profession;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 @Data
 public class DB {

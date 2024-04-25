@@ -1,8 +1,19 @@
-#spring.application.name=First_REST_API
-
 spring:
   application:
     name: FIRST_REST_API
+  datasource:
+    url: jdbc:postgresql://localhost:5432/company_112
+    username: postgres
+    password: ItsMyLife0203
+  flyway:
+    url: jdbc:postgresql://localhost:5432/company_112
+    user: postgres
+    password: ItsMyLife0203
+    locations: classpath:db/migration
+  jpa:
+    show-sql: true
+    generate-ddl: true
+
 server:
   port: 8000
 debug: true
