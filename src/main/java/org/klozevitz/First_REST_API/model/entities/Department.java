@@ -17,4 +17,7 @@ public class Department {
         this.note = note;
         this.parent = parent;
     }
+
+    public void update(Department department) {
+    }
 }

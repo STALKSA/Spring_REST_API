@@ -49,5 +49,10 @@ public class DepartmentServiceImplementation implements DepartmentService {
         }
         return false;
     }
+
+    @Override
+    public List<Department> findByDepartmentNameContaining(String partOfName) {
+        return repo.findAllByDepartmentNameContaining(partOfName);
+    }
 }
 

@@ -10,4 +10,6 @@ public interface DepartmentService {
     Department save(Department department);
     Department update(Department department);
     boolean deleteById(int id);
+
+    List<Department> findByDepartmentNameContaining(String partOfName);
 }
