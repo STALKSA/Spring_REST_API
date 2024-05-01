@@ -2,6 +2,7 @@ package org.klozevitz.First_REST_API.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.klozevitz.First_REST_API.model.entities.Employee;
+import org.klozevitz.First_REST_API.services.interfaces.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
